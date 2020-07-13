@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { setTimeout } from 'core-js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+	strict: true,
 	state: {
 		products: [
 			{ name: 'Banana Skin', price: 20 },
@@ -32,7 +34,19 @@ export default new Vuex.Store({
 			return saleProductsTwo;
 		}
 	},
-	mutations: {},
-	actions: {},
+	mutations: {
+		reducePrice: (state, payload) => {
+			state.products.forEach((product) => {
+				product.price -= payload;
+			});
+		}
+	},
+	actions: {
+		reducePrice: (context, payload) => {
+			setTimeout(() => {
+				context.commit('reducePrice', payload);
+			}, 2000);
+		}
+	},
 	modules: {}
 });

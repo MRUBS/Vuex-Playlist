@@ -1,6 +1,6 @@
 <template>
   <div id="product-list-one">
-    <div class="non-sale-products">
+    <!-- <div class="non-sale-products">
       <h2>Product List One NON-SALE PRODUCT</h2>
       <ul>
         <li v-for="product in products" v-bind:key="product.name">
@@ -8,7 +8,7 @@
           <span class="price">${{ product.price }}</span>
         </li>
       </ul>
-    </div>
+    </div>-->
     <div class="sale-products">
       <h2>Product List One SALE PRODUCT</h2>
       <ul>
@@ -18,6 +18,8 @@
         </li>
       </ul>
     </div>
+
+    <button v-on:click="reducePrice(4)">Reduce Price</button>
   </div>
 </template>
 
@@ -28,11 +30,20 @@ export default {
     return {};
   },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
+    // products() {
+    //   return this.$store.state.products;
+    // },
     saleProductsOne() {
       return this.$store.getters.saleProductsOne;
+    }
+  },
+  methods: {
+    reducePrice: function(amount) {
+      // this.$store.state.products.forEach(product => {
+      //   product.price -= 2;
+      // });
+      // this.$store.commit("reducePrice");
+      this.$store.dispatch("reducePrice", amount);
     }
   }
 };
