@@ -1,12 +1,23 @@
 <template>
   <div id="product-list-two">
-    <h2>Product List Two</h2>
-    <ul>
-      <li v-for="product in products" v-bind:key="product.name">
-        <span class="name">{{ product.name }}</span>
-        <span class="price">${{ product.price }}</span>
-      </li>
-    </ul>
+    <div class="non-sale-products">
+      <h2>Product List Two NON-SALE PRODUCT</h2>
+      <ul>
+        <li v-for="product in products" v-bind:key="product.name">
+          <span class="name">{{ product.name }}</span>
+          <span class="price">${{ product.price }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="sale-products">
+      <h2>Product List Two SALE PRODUCT</h2>
+      <ul>
+        <li v-for="product in saleProductsTwo" v-bind:key="product.name">
+          <span class="name">{{ product.name }}</span>
+          <span class="price">${{ product.price }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -19,6 +30,9 @@ export default {
   computed: {
     products() {
       return this.$store.state.products;
+    },
+    saleProductsTwo() {
+      return this.$store.getters.saleProductsTwo;
     }
   }
 };
