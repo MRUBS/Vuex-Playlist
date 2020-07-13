@@ -24,6 +24,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
   name: "ProductListOne",
   data() {
@@ -33,18 +36,20 @@ export default {
     // products() {
     //   return this.$store.state.products;
     // },
-    saleProductsOne() {
-      return this.$store.getters.saleProductsOne;
-    }
+    // saleProductsOne() {
+    //   return this.$store.getters.saleProductsOne;
+    // },
+    ...mapGetters(["saleProductsOne"])
   },
   methods: {
-    reducePrice: function(amount) {
-      // this.$store.state.products.forEach(product => {
-      //   product.price -= 2;
-      // });
-      // this.$store.commit("reducePrice");
-      this.$store.dispatch("reducePrice", amount);
-    }
+    // reducePrice: function(amount) {
+    // this.$store.state.products.forEach(product => {
+    //   product.price -= 2;
+    // });
+    // this.$store.commit("reducePrice");
+    // this.$store.dispatch("reducePrice", amount);
+    // },
+    ...mapActions(["reducePrice"])
   }
 };
 </script>
